@@ -9,14 +9,23 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.List;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
+import duolingo.lib.model.*;
+import duolingo.lib.hibernate.*;
+
+
+
+
 public class WindowManageCourses extends JFrame {
 
 	private JPanel contentPane;
+	private List<LangModel> langs;
 	
 	
 	
