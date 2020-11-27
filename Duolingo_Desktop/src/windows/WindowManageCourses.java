@@ -9,6 +9,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -25,7 +26,10 @@ import duolingo.lib.hibernate.*;
 public class WindowManageCourses extends JFrame {
 
 	private JPanel contentPane;
-	private List<LangModel> langs;
+	private List<LangModel> langsModel;
+	private List<CrsModel> coursesModel;
+	private List<CatModel> catsModel;
+	private List<LvlModel> levelsModel;	
 	
 	
 	
@@ -33,6 +37,18 @@ public class WindowManageCourses extends JFrame {
 	 * Create the frame.
 	 */
 	public WindowManageCourses() {
+		
+		setFrame();
+		langsModel = new ArrayList<LangModel>();
+		coursesModel = new ArrayList<CrsModel>();
+		catsModel = new ArrayList<CatModel>();
+		levelsModel = new ArrayList<LvlModel>();
+		
+		
+		
+	}
+	
+	public void setFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 605, 468);
 		contentPane = new JPanel();
