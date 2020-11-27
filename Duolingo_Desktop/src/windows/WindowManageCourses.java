@@ -17,23 +17,9 @@ import javax.swing.JButton;
 public class WindowManageCourses extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					WindowManageCourses frame = new WindowManageCourses();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
+	
+	
 	/**
 	 * Create the frame.
 	 */
