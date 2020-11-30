@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -34,6 +35,11 @@ public class WindowManageCourses extends JFrame {
 	private List<LvlModel> levelsModel;
 	private JComboBox cmBxOriginLanguage;
 	private JComboBox cmBxDestinyLanguage;
+	private ICrs crsDao;
+	private JList listCrs;
+	private JList listCatsCrs;
+	private JList listLevelsCat;
+
 
 	/**
 	 * Create the frame.
@@ -46,6 +52,7 @@ public class WindowManageCourses extends JFrame {
 		coursesModel = new ArrayList<CrsModel>();
 		catsModel = new ArrayList<CatModel>();
 		levelsModel = new ArrayList<LvlModel>();
+		ICrs crsDao = new CrsImpl();
 		
 	}
 
@@ -95,11 +102,10 @@ public class WindowManageCourses extends JFrame {
 		JButton btnCheckQuestions = new JButton("VISUALIZAR PREGUNTAS");
 		btnCheckQuestions.setFont(new Font("Dialog", Font.PLAIN, 8));
 
-		JList listCrs = new JList();
-
-		JList listCatsCrs = new JList();
-
-		JList listLevelsCat = new JList();
+		listCrs = new JList();
+		listCatsCrs = new JList();
+		listLevelsCat = new JList();
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane
 				.createSequentialGroup().addGap(25)
@@ -174,6 +180,15 @@ public class WindowManageCourses extends JFrame {
 		cmBxDestinyLanguage = new JComboBox();
 
 		JButton btnAplicarFiltro = new JButton("Aplicar filtro");
+		btnAplicarFiltro.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				applyfilter(cmBxOriginLanguage, cmBxDestinyLanguage);
+			}
+			
+		});
 		btnAplicarFiltro.setFont(new Font("Dialog", Font.PLAIN, 8));
 
 		JButton btnCrearCurso = new JButton("Crear curso");
@@ -221,6 +236,25 @@ public class WindowManageCourses extends JFrame {
 						.addGap(18)));
 		panelFilters.setLayout(gl_panelFilters);
 		contentPane.setLayout(gl_contentPane);
+	}
+	
+	public void applyfilter(JComboBox cmBxOriginLanguage, JComboBox cmBxDestinyLanguage) {
+		ArrayList<CrsModel> crsSelected = new ArrayList<CrsModel>();
+		LangModel langOrigin = langsModel.get(cmBxOriginLanguage.getSelectedIndex());
+		LangModel langDestiny = langsModel.get(cmBxDestinyLanguage.getSelectedIndex());
+		crsSelected = crsDao.getCrsByLangFilter(langOrigin.getId(), langDestiny.getId());
+		if(crsSelected != null) {
+			this.displayCrsSelected(crsSelected);
+		}
+	}
+	
+	public void displayCrsSelected(ArrayList<CrsModel> crsSelected) {
+		 listCrs.removeAll();
+	     DefaultListModel listCrsModel = new DefaultListModel();
+	     for (CrsModel crs : crsSelected){
+	            String row = crs.getLangOrigin().getNombre() + " --> " + crs.getLangDestiny().getNombre();
+	            listCrsModel.addElement(row);
+	     }
 	}
 
 }
