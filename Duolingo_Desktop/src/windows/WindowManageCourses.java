@@ -43,9 +43,6 @@ public class WindowManageCourses extends JFrame {
 		coursesModel = new ArrayList<CrsModel>();
 		catsModel = new ArrayList<CatModel>();
 		levelsModel = new ArrayList<LvlModel>();
-		
-		
-		
 	}
 	
 	public void setFrame() {
@@ -63,29 +60,29 @@ public class WindowManageCourses extends JFrame {
 		JLabel lblCursos = new JLabel("Cursos");
 		lblCursos.setFont(new Font("Dialog", Font.PLAIN, 8));
 		
-		JLabel lblCourseCat = new JLabel("Categorías del curso seleccionado");
+		JLabel lblCourseCat = new JLabel("Categorias del curso seleccionado");
 		lblCourseCat.setFont(new Font("Dialog", Font.PLAIN, 8));
 		
-		JLabel lblLevelsCatCourse = new JLabel("Niveles de la categoría seleccionada");
+		JLabel lblLevelsCatCourse = new JLabel("Niveles de la categoria seleccionada");
 		lblLevelsCatCourse.setFont(new Font("Dialog", Font.PLAIN, 8));
 		
-		JPanel panelCourses = new JPanel();
-		
-		JPanel panelCatCourse = new JPanel();
-		
-		JPanel panelLevelsCatCourse = new JPanel();
-		
-		JButton btnAddCat = new JButton("Añadir categoría");
+		JButton btnAddCat = new JButton("Anadir categoria");
 		btnAddCat.setFont(new Font("Dialog", Font.PLAIN, 8));
 		
-		JButton btnAddLevel = new JButton("Añadir nivel");
+		JButton btnAddLevel = new JButton("Anadir nivel");
 		btnAddLevel.setFont(new Font("Dialog", Font.PLAIN, 8));
 		
-		JButton btnAddQuestion = new JButton("AÑADIR PREGUNTA");
+		JButton btnAddQuestion = new JButton("ANADIR PREGUNTA");
 		btnAddQuestion.setFont(new Font("Dialog", Font.PLAIN, 8));
 		
 		JButton btnCheckQuestions = new JButton("VISUALIZAR PREGUNTAS");
 		btnCheckQuestions.setFont(new Font("Dialog", Font.PLAIN, 8));
+		
+		JList listCrs = new JList();
+		
+		JList listCatsCrs = new JList();
+		
+		JList listLevelsCat = new JList();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -94,25 +91,28 @@ public class WindowManageCourses extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblTitleManageCourses)
 						.addComponent(btnCheckQuestions, GroupLayout.PREFERRED_SIZE, 535, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelFilters, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+						.addComponent(panelFilters, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnAddQuestion, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+								.addComponent(btnAddQuestion, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblCursos)
-										.addComponent(panelCourses, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE))
-									.addGap(39)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblCourseCat, GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-										.addComponent(btnAddCat, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-										.addComponent(panelCatCourse, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE))
+										.addComponent(listCrs, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE))
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addGap(39)
+											.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+												.addComponent(lblCourseCat, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+												.addComponent(btnAddCat, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)))
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(listCatsCrs, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)))
 									.addGap(40)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(listLevelsCat, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
 										.addComponent(lblLevelsCatCourse, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-											.addComponent(btnAddLevel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-											.addComponent(panelLevelsCatCourse, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)))))
+										.addComponent(btnAddLevel))))
 							.addGap(23)))
 					.addContainerGap())
 		);
@@ -129,22 +129,20 @@ public class WindowManageCourses extends JFrame {
 								.addComponent(lblCursos, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblLevelsCatCourse, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(panelCourses, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panelLevelsCatCourse, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblCourseCat, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panelCatCourse, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(listCrs, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
+								.addComponent(listCatsCrs, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
+								.addComponent(listLevelsCat, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(lblCourseCat, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE))
 					.addGap(27)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAddLevel, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnAddCat, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnAddQuestion)
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnCheckQuestions, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
 		JLabel lblOriginLanguage = new JLabel("Idioma de origen");
@@ -166,20 +164,23 @@ public class WindowManageCourses extends JFrame {
 		gl_panelFilters.setHorizontalGroup(
 			gl_panelFilters.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panelFilters.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panelFilters.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(cmBxOriginLanguage, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(lblOriginLanguage, GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
-					.addGap(45)
-					.addGroup(gl_panelFilters.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panelFilters.createSequentialGroup()
-							.addComponent(lblDestinyaLanguage)
-							.addGap(65))
-						.addComponent(cmBxDestinyLanguage, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE))
-					.addGap(47)
 					.addGroup(gl_panelFilters.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnAplicarFiltro, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-						.addComponent(btnCrearCurso, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+						.addGroup(gl_panelFilters.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_panelFilters.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(cmBxOriginLanguage, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblOriginLanguage, GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+							.addGap(45)
+							.addGroup(gl_panelFilters.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_panelFilters.createSequentialGroup()
+									.addComponent(lblDestinyaLanguage)
+									.addGap(65))
+								.addComponent(cmBxDestinyLanguage, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE))
+							.addGap(47)
+							.addComponent(btnAplicarFiltro, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+						.addGroup(Alignment.TRAILING, gl_panelFilters.createSequentialGroup()
+							.addGap(364)
+							.addComponent(btnCrearCurso, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)))
 					.addContainerGap())
 		);
 		gl_panelFilters.setVerticalGroup(
@@ -190,21 +191,25 @@ public class WindowManageCourses extends JFrame {
 						.addGroup(gl_panelFilters.createSequentialGroup()
 							.addGroup(gl_panelFilters.createParallelGroup(Alignment.TRAILING)
 								.addGroup(gl_panelFilters.createSequentialGroup()
-									.addComponent(lblDestinyaLanguage, GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+									.addComponent(lblDestinyaLanguage, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(cmBxDestinyLanguage, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE))
 								.addGroup(gl_panelFilters.createSequentialGroup()
 									.addGap(4)
-									.addComponent(lblOriginLanguage, GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
+									.addComponent(lblOriginLanguage, GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(cmBxOriginLanguage, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)))
 							.addGap(13))
 						.addGroup(gl_panelFilters.createSequentialGroup()
 							.addComponent(btnAplicarFiltro)
-							.addGap(18)))
-					.addComponent(btnCrearCurso, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnCrearCurso, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGap(18))
 		);
 		panelFilters.setLayout(gl_panelFilters);
 		contentPane.setLayout(gl_contentPane);
 	}
+	
+	
 }
