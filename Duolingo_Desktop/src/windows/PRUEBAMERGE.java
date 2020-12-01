@@ -57,9 +57,13 @@ public class PRUEBAMERGE extends JFrame {
 		coursesssModel = new ArrayList<CrsModel>();
 		crsDAO = new CrsImpl();
 		CrsModel crs = coursesModel.get(crsIndex);
+
 		setFrame();
-		setFrame();
+
+		System.out.println();
+		System.out.println();
 		catsModel = catDAO.getAllCategoriesByCrs(crs);	
+
 		catsModel = new ArrayList<CatModel>();
 		String row = cat.getName();
 		listCatCrsModel.addElement(row);	
