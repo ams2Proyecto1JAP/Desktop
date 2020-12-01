@@ -66,7 +66,27 @@ public class PRUEBAMERGE extends JFrame {
 		catDAO = new CatImpl();
 		
 	}
-
+	
+	public void loadCategoriesByCrs (int crsIndex)
+	{
+		CrsModel crs = coursesModel.get(crsIndex);
+		
+		catsModel = catDAO.getAllCategoriesByCrs(crs);	
+		
+	}
+	
+	public void updateCatListByModel() {
+		listCatsCrs.removeAll();
+		DefaultListModel listCatCrsModel = new DefaultListModel();
+		
+		for (CatModel cat : catsModel) 
+		{
+			String row = cat.getName();
+			listCatCrsModel.addElement(row);	
+		}
+		listCatsCrs.setModel(listCatCrsModel);
+	}
+	
 
 	public void setFrame() {
 		//setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
