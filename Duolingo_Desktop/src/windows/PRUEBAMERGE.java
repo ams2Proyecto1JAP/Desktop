@@ -54,8 +54,10 @@ public class PRUEBAMERGE extends JFrame {
 	 */
 	public PRUEBAMERGE() {
 		langsModel = new ArrayList<LangModel>();
-		coursesModel = new ArrayList<CrsModel>();
+		coursesssModel = new ArrayList<CrsModel>();
+		crsDAO = new CrsImpl();
 		catsModel = new ArrayList<CatModel>();
+		
 		levelsModel = new ArrayList<LvlModel>();
 		
 		setFrame();
