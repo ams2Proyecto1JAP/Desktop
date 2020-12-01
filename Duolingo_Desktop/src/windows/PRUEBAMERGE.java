@@ -66,6 +66,66 @@ public class PRUEBAMERGE extends JFrame {
 		catDAO = new CatImpl();
 		
 	}
+	
+	public void createCrsByFilter(){
+		coursesModel.clear();
+		LangModel srcLang = langsModel.get(cmBxOriginLanguage.getSelectedIndex());
+		LangModel dstLang = langsModel.get(cmBxDestinyLanguage.getSelectedIndex());
+		CrsModel newCrs = new CrsModel(srcLang, dstLang);
+		crsDAO.saveCrs(newCrs);
+		coursesModel.add(newCrs);
+		updateCrsListByModel();
+		btnCrearCurso.setEnabled(false);
+	}
+	
+	public void updateCrsListByModel() {
+		listCrs.removeAll();
+		DefaultListModel listCrsModel = new DefaultListModel();
+		
+		for (CrsModel crs : coursesModel) 
+		{
+			String row = crs.getLangOrigin().getNombre() + " --> " + crs.getLangDestiny().getNombre();
+			listCrsModel.addElement(row);	
+		}
+		listCrs.setModel(listCrsModel);
+	}
+	
+	public void loadLangs() {
+		ILang langDAO = new LangImpl();
+		langsModel=langDAO.getAllLang();
+		LangModel def = new LangModel("Selecciona Un Idioma","");
+		langsModel.add(0,def);
+	}
+	
+	public void chargeLangsJComb() {
+		for(LangModel l : langsModel) {
+			cmBxOriginLanguage.addItem(l.getNombre());
+			cmBxDestinyLanguage.addItem(l.getNombre());
+		}
+	}
+	
+	public void applyfilter(JComboBox cmBxOriginLanguage, JComboBox cmBxDestinyLanguage) {
+
+		if (cmBxOriginLanguage.getSelectedIndex() == 0 || cmBxDestinyLanguage.getSelectedIndex() == 0) {
+			JOptionPane.showMessageDialog(null, "Comprobacion de daatos", "Has dejado sin seleccionar alguno de los idiomas", JOptionPane.WARNING_MESSAGE);
+		}
+		else if (cmBxDestinyLanguage.getSelectedIndex() == cmBxOriginLanguage.getSelectedIndex())
+		{
+			JOptionPane.showMessageDialog(null, "Comprobacion de daatos", "No puedes seleccionar el mismo idioma de origen que de destino", JOptionPane.WARNING_MESSAGE);
+		}
+		else
+		{
+			LangModel langOrigin = langsModel.get(cmBxOriginLanguage.getSelectedIndex());
+			LangModel langDestiny = langsModel.get(cmBxDestinyLanguage.getSelectedIndex());
+			coursesModel.clear();
+			coursesModel = crsDAO.getCrsByLangFilter(langOrigin.getId(), langDestiny.getId());
+			this.displayCrsSelected();
+			if(coursesModel.isEmpty()) {
+				btnCrearCurso.setEnabled(true);
+			}
+		}		
+		
+	}
 
 
 	public void setFrame() {
