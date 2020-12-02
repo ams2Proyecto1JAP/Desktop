@@ -13,6 +13,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -126,7 +127,7 @@ public class WindowManageCourses extends JFrame {
 	
 	public void applyfilter(JComboBox cmBxOriginLanguage, JComboBox cmBxDestinyLanguage) {
 
-		if (cmBxOriginLanguage.getSelectedIndex() == 0 || cmBxDestinyLanguage.getSelectedIndex() == 0) {
+		if (cmBxOriginLanguage.getSelectedIndex() == 0 && cmBxDestinyLanguage.getSelectedIndex() == 0) {
 			JOptionPane.showMessageDialog(null, "Comprobacion de daatos", "Has dejado sin seleccionar alguno de los idiomas", JOptionPane.WARNING_MESSAGE);
 		}
 		else if (cmBxDestinyLanguage.getSelectedIndex() == cmBxOriginLanguage.getSelectedIndex())
@@ -135,6 +136,9 @@ public class WindowManageCourses extends JFrame {
 		}
 		else
 		{
+			listCrs.setModel(new DefaultListModel());
+			listCatsCrs.setModel(new DefaultListModel());
+			listLevelsCat.setModel(new DefaultListModel());
 			LangModel langOrigin = langsModel.get(cmBxOriginLanguage.getSelectedIndex());
 			LangModel langDestiny = langsModel.get(cmBxDestinyLanguage.getSelectedIndex());
 			coursesModel.clear();
@@ -185,6 +189,7 @@ public class WindowManageCourses extends JFrame {
 	}
 
 	public void setFrame() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("resources/duolingo.png"));
 		//setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 750, 520);
 		setResizable(false);

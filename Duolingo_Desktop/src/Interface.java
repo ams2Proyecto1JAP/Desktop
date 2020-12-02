@@ -53,7 +53,7 @@ public class Interface extends JFrame {
 		// JMenuBar Add Items
 		JMenu jMenu = new JMenu("Menu");
 		jMenuBar.add(jMenu);
-
+		
 		// JMenu Add Items
 		JMenuItem menuItemAdminCurs = new JMenuItem(new AbstractAction("Administrar Cursos") {
 		    public void actionPerformed(ActionEvent e) {
