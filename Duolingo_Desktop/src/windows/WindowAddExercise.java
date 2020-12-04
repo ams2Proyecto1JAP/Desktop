@@ -12,6 +12,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 
 import duolingo.lib.model.CatModel;
+import duolingo.lib.model.LvlModel;
+import windows.exercices.WindowExerciceTypeTest;
 
 import java.awt.Color;
 import javax.swing.JSplitPane;
@@ -24,9 +26,8 @@ public class WindowAddExercise extends JFrame {
 
 	private JPanel contentPane;
 
-	private CatModel cat;
+	private LvlModel lvl;
 	
-	private String lvlName;
 	
 	JLabel lblLangSrc; 
 	
@@ -39,17 +40,17 @@ public class WindowAddExercise extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public WindowAddExercise(CatModel cat, String lvlName) {
+	public WindowAddExercise(LvlModel lvl) {
 		setFrame();
-		this.setCat(cat);
+		this.lvl = lvl;
 		setLabels();
 		
 	}
 	public void setLabels() {
-		lblLangSrc.setText("Idioma origen: " + cat.getCrs().getLangOrigin().getNombre());
-		lblLangDst.setText("Idioma origen: " + cat.getCrs().getLangDestiny().getNombre());
-		lblCat.setText("Categoría: " + cat.getName());
-		lblLvl.setText("Nivel: " + lvlName);
+		lblLangSrc.setText("Idioma origen: " + lvl.getCat().getCrs().getLangOrigin().getNombre());
+		lblLangDst.setText("Idioma origen: " + lvl.getCat().getCrs().getLangDestiny().getNombre());
+		lblCat.setText("Categoría: " + lvl.getCat().getName());
+		lblLvl.setText("Nivel: " + lvl.getName());
 	}
 	
 	public void setFrame(){
@@ -80,8 +81,21 @@ public class WindowAddExercise extends JFrame {
 				.addComponent(leftPanel, GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
 		);
 		
-		JButton btnNewButton = new JButton("");
-		
+		JButton btnTestType = new JButton("");
+		btnTestType.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							WindowExerciceTypeTest window = new WindowExerciceTypeTest(lvl);
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -104,7 +118,7 @@ public class WindowAddExercise extends JFrame {
 			gl_rightPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_rightPanel.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnTestType, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
 					.addGap(10)
 					.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -131,7 +145,7 @@ public class WindowAddExercise extends JFrame {
 					.addContainerGap()
 					.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnNewButton_2, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnTestType, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
 					.addGap(32)
 					.addGroup(gl_rightPanel.createParallelGroup(Alignment.BASELINE)
@@ -204,11 +218,10 @@ public class WindowAddExercise extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 
-	public CatModel getCat() {
-		return cat;
+	public LvlModel getLvl() {
+		return lvl;
 	}
-
-	public void setCat(CatModel cat) {
-		this.cat = cat;
+	public void setLvl(LvlModel lvl) {
+		this.lvl = lvl;
 	}
 }

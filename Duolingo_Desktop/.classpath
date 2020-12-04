@@ -7,5 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/lib"/>
+	<classpathentry kind="lib" path="E:/AMS2/M06 - ACCESO A DATOS/json-20200518.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
