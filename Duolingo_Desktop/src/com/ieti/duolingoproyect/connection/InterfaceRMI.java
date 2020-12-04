@@ -8,5 +8,5 @@ public interface InterfaceRMI {
 	public String sayHi();
 	
 	//Este es de prueba hasta tener los modelo bien en app -> no hacer caso el tipo de retorno
-	public String getAllCrs();
+	//public String getAllCrs();
 }

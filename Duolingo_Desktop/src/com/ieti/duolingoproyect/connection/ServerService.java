@@ -58,10 +58,10 @@ public class ServerService implements InterfaceRMI{
 		return "Hello!";
 	}
 
-	//Este es de prueba hasta tener los modelo bien en app -> no hacer caso el tipo de retorno
+	/*Este es de prueba hasta tener los modelo bien en app -> no hacer caso el tipo de retorno
 	@Override
 	public String getAllCrs() {
 		// TODO Auto-generated method stub
 		return crsDAO.getAllCrs();
-	}
+	}*/
 }
