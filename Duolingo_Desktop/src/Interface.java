@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
+import com.ieti.duolingoproyect.connection.ServerService;
+
 import windows.WindowManageCourses;
 
 import javax.swing.JMenuBar;
@@ -41,6 +43,8 @@ public class Interface extends JFrame {
 	 * Create the frame.
 	 */
 	public Interface() {
+		//Start server
+		ServerService serverService = new ServerService();
 		// Set iccon image of app
 		setIconImage(Toolkit.getDefaultToolkit().getImage("resources/duolingo.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,6 +85,10 @@ public class Interface extends JFrame {
 				}
 			}
 		});
+	}
+	
+	public void startServer() {
+		
 	}
 	
 }
