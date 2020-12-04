@@ -189,6 +189,7 @@ public class WindowManageCourses extends JFrame {
 	}
 
 	public void setFrame() {
+		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("resources/duolingo.png"));
 		//setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 750, 520);
@@ -221,12 +222,32 @@ public class WindowManageCourses extends JFrame {
 				
 			}
 		});
+		btnAddCat.setEnabled(false);
 		JButton btnAddLevel = new JButton("Anadir nivel");
 		btnAddLevel.setFont(new Font("Dialog", Font.PLAIN, 13));
 
 		JButton btnAddQuestion = new JButton("ANADIR PREGUNTA");
 		btnAddQuestion.setFont(new Font("Dialog", Font.PLAIN, 13));
-
+		btnAddQuestion.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							WindowAddExercise frame = new WindowAddExercise(catsModel.get(listCatsCrs.getSelectedIndex()), "prueba");
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				
+			}
+		});
+		
+		
+		
 		JButton btnCheckQuestions = new JButton("VISUALIZAR PREGUNTAS");
 		btnCheckQuestions.setFont(new Font("Dialog", Font.PLAIN, 13));
 
@@ -239,6 +260,7 @@ public class WindowManageCourses extends JFrame {
                 	{
                 		loadCategoriesByCrs(listCrs.getSelectedIndex());
                     	updateCatListByModel();
+                    	btnAddCat.setEnabled(true);
                 	}
                 	
                 }
