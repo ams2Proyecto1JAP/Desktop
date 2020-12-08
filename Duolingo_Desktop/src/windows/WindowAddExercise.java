@@ -6,8 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 
@@ -21,6 +24,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Image;
 
 public class WindowAddExercise extends JFrame {
 
@@ -56,7 +61,7 @@ public class WindowAddExercise extends JFrame {
 	public void setFrame(){
 		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 750, 520);
+		setBounds(100, 100, 765, 520);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -82,6 +87,8 @@ public class WindowAddExercise extends JFrame {
 		);
 		
 		JButton btnTestType = new JButton("");
+		btnTestType.setIcon(new ImageIcon("resources/tipo_test.jpeg"));
+		
 		btnTestType.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EventQueue.invokeLater(new Runnable() {
@@ -96,23 +103,29 @@ public class WindowAddExercise extends JFrame {
 				});
 			}
 		});
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnTradOpen = new JButton("");
+		btnTradOpen.setIcon(new ImageIcon("resources/traduccio_oberta.jpeg"));
+		btnTradOpen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		JButton btnNewButton_2 = new JButton("");
+		JButton btnTradOrder = new JButton("");
+		btnTradOrder.setIcon(new ImageIcon("resources/traduccio_ordena.jpeg"));		
 		
-		JButton btnNewButton_1_1 = new JButton("");
+		JButton btnListOpen = new JButton("");
+		btnListOpen.setIcon(new ImageIcon("resources/listening_obert.jpeg"));
 		
-		JButton btnNewButton_1_1_1 = new JButton("");
 		
-		JButton btnNewButton_3 = new JButton("");
+		JButton btnListReorder = new JButton("");
+		btnListReorder.setIcon(new ImageIcon("resources/listening_reordena.jpeg"));
 		
-		JButton btnNewButton_4_1 = new JButton("");
+		JButton btnFillWord = new JButton("");
+		btnFillWord.setIcon(new ImageIcon("resources/omple_paraula.jpeg"));
 		
-		JButton btnNewButton_1_2 = new JButton("");
+		JButton btnPair = new JButton("");
+		btnPair.setIcon(new ImageIcon("resources/aparella_paraules.png"));
+		
 		GroupLayout gl_rightPanel = new GroupLayout(rightPanel);
 		gl_rightPanel.setHorizontalGroup(
 			gl_rightPanel.createParallelGroup(Alignment.LEADING)
@@ -120,42 +133,37 @@ public class WindowAddExercise extends JFrame {
 					.addContainerGap()
 					.addComponent(btnTestType, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
 					.addGap(10)
-					.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+					.addComponent(btnTradOpen, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnNewButton_2, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnTradOrder, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 				.addGroup(gl_rightPanel.createSequentialGroup()
 					.addGap(44)
-					.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-					.addComponent(btnNewButton_1_1_1, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnFillWord, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnListOpen, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+					.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnPair, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnListReorder, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
 					.addGap(42))
-				.addGroup(gl_rightPanel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnNewButton_3, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
-					.addGap(12)
-					.addComponent(btnNewButton_1_2, GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnNewButton_4_1, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
 		);
 		gl_rightPanel.setVerticalGroup(
 			gl_rightPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_rightPanel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton_2, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnTestType, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnTradOrder, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+						.addComponent(btnTradOpen, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+						.addComponent(btnTestType, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 					.addGap(32)
 					.addGroup(gl_rightPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton_1_1_1, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-					.addGroup(gl_rightPanel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnNewButton_3, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton_4_1, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton_1_2, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnListOpen, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnListReorder, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnPair, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+						.addComponent(btnFillWord, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		rightPanel.setLayout(gl_rightPanel);
@@ -178,27 +186,32 @@ public class WindowAddExercise extends JFrame {
 		);
 		
 		lblLangSrc = new JLabel("New label");
+		lblLangSrc.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		lblLangDst = new JLabel("New label");
+		lblLangDst.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		lblCat = new JLabel("New label");
+		lblCat.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		lblLvl = new JLabel("New label");
+		lblLvl.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_leftUpPanel = new GroupLayout(leftUpPanel);
 		gl_leftUpPanel.setHorizontalGroup(
 			gl_leftUpPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_leftUpPanel.createSequentialGroup()
-					.addGap(21)
+					.addContainerGap()
 					.addGroup(gl_leftUpPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_leftUpPanel.createSequentialGroup()
-							.addComponent(lblLvl, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)
+						.addGroup(Alignment.TRAILING, gl_leftUpPanel.createSequentialGroup()
+							.addGroup(gl_leftUpPanel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblLangDst, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+								.addComponent(lblLangSrc, GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
 							.addContainerGap())
-						.addGroup(gl_leftUpPanel.createSequentialGroup()
-							.addGroup(gl_leftUpPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblCat, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-								.addComponent(lblLangDst, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblLangSrc, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE))
-							.addGap(20))))
+						.addGroup(Alignment.TRAILING, gl_leftUpPanel.createSequentialGroup()
+							.addGroup(gl_leftUpPanel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblLvl, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+								.addComponent(lblCat, GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+							.addContainerGap())))
 		);
 		gl_leftUpPanel.setVerticalGroup(
 			gl_leftUpPanel.createParallelGroup(Alignment.LEADING)
@@ -215,6 +228,12 @@ public class WindowAddExercise extends JFrame {
 		);
 		leftUpPanel.setLayout(gl_leftUpPanel);
 		leftPanel.setLayout(gl_leftPanel);
+		
+		
+		
+		
+	
+		
 		contentPane.setLayout(gl_contentPane);
 	}
 

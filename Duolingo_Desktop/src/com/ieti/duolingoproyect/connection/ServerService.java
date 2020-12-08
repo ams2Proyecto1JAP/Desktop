@@ -62,7 +62,7 @@ public class ServerService implements InterfaceRMI{
 	@Override
 	public ArrayList<String> getAllCrs() {
 		// TODO Auto-generated method stub
-		ArrayList<CrsModel> crs = crsDAO.getAllCrs();
+		ArrayList<CrsModel> crs = new ArrayList<CrsModel>(crsDAO.getAllCrs());
 		ArrayList<String> courses = new ArrayList<String>();
 		for(CrsModel c : crs) {
 			courses.add(c.getLangOrigin().getNombre()+" -> "+c.getLangDestiny().getNombre());

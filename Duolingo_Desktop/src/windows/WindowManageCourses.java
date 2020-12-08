@@ -48,7 +48,10 @@ public class WindowManageCourses extends JFrame {
 	private JList listCatsCrs;
 	private JList listLevelsCat;
 	JButton btnCrearCurso;
-	
+	JButton btnAddLevel;
+	JButton btnAddCat;
+	JButton btnAddQuestion;
+	private boolean ready;
 	
 
 
@@ -61,6 +64,7 @@ public class WindowManageCourses extends JFrame {
 	 * Create the frame.
 	 */
 	public WindowManageCourses() {
+		ready = false;
 		langsModel = new ArrayList<LangModel>();
 		coursesModel = new ArrayList<CrsModel>();
 		catsModel = new ArrayList<CatModel>();
@@ -158,6 +162,9 @@ public class WindowManageCourses extends JFrame {
 			JOptionPane.showMessageDialog(null, "Comprobacion de daatos",
 					"No puedes seleccionar el mismo idioma de origen que de destino", JOptionPane.WARNING_MESSAGE);
 		} else {
+			btnAddLevel.setEnabled(false);
+			btnAddCat.setEnabled(false);
+			btnAddQuestion.setEnabled(false);
 			listCrs.setModel(new DefaultListModel());
 			listCatsCrs.setModel(new DefaultListModel());
 			listLevelsCat.setModel(new DefaultListModel());
@@ -253,7 +260,7 @@ public class WindowManageCourses extends JFrame {
 		JLabel lblLevelsCatCourse = new JLabel("Niveles de la categoria seleccionada");
 		lblLevelsCatCourse.setFont(new Font("Dialog", Font.PLAIN, 13));
 
-		JButton btnAddCat = new JButton("Anadir categoria");
+		btnAddCat = new JButton("Anadir categoria");
 		btnAddCat.setFont(new Font("Dialog", Font.PLAIN, 13));
 		btnAddCat.addActionListener(new ActionListener() {
 			@Override
@@ -264,7 +271,7 @@ public class WindowManageCourses extends JFrame {
 			}
 		});
 		btnAddCat.setEnabled(false);
-		JButton btnAddLevel = new JButton("Anadir nivel");
+		btnAddLevel = new JButton("Anadir nivel");
 		btnAddLevel.setFont(new Font("Dialog", Font.PLAIN, 13));
 		btnAddLevel.addActionListener(new ActionListener() {
 			@Override
@@ -274,7 +281,7 @@ public class WindowManageCourses extends JFrame {
 		});
 		btnAddLevel.setEnabled(false);
 
-		JButton btnAddQuestion = new JButton("ANADIR PREGUNTA");
+		btnAddQuestion = new JButton("ANADIR PREGUNTA");
 		btnAddQuestion.setFont(new Font("Dialog", Font.PLAIN, 13));
 		btnAddQuestion.setEnabled(false);
 		btnAddQuestion.addActionListener(new ActionListener() {
@@ -313,6 +320,8 @@ public class WindowManageCourses extends JFrame {
                 	{
                 		loadCategoriesByCrs(listCrs.getSelectedIndex());
                     	updateCatListByModel();
+                    	btnAddLevel.setEnabled(false);
+            			btnAddQuestion.setEnabled(false);
                     	btnAddCat.setEnabled(true);
                 	}
                 	
@@ -332,7 +341,8 @@ public class WindowManageCourses extends JFrame {
                 	if (listCatsCrs.getSelectedIndex() != -1)
                 	{
                 		loadLvlsByCat(listCatsCrs.getSelectedIndex());
-                    	updateLevelListByModel();
+                    	updateLevelListByModel();            
+            			btnAddQuestion.setEnabled(false);
                     	btnAddLevel.setEnabled(true);
                 	}
                 	
@@ -509,6 +519,15 @@ public class WindowManageCourses extends JFrame {
 								.addGap(18)));
 		panelFilters.setLayout(gl_panelFilters);
 		contentPane.setLayout(gl_contentPane);
+		ready = true;
+	}
+
+	public boolean isReady() {
+		return ready;
+	}
+
+	public void setReady(boolean ready) {
+		this.ready = ready;
 	}
 
 }
