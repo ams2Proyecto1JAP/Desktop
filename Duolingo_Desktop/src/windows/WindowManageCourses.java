@@ -32,25 +32,31 @@ import duolingo.lib.hibernate.*;
 
 public class WindowManageCourses extends JFrame {
 
-	private JPanel contentPane;
+	//Attributes
+	
 	private List<LangModel> langsModel;
 	private List<CrsModel> coursesModel;
 	private List<CatModel> catsModel;
 	private List<LvlModel> lvlsModel;
-
+	private LvlModel selectedLvl;
+	
 	// Components
+	private JPanel contentPane;
 	private JComboBox cmBxOriginLanguage;
 	private JComboBox cmBxDestinyLanguage;
 	private JList listCrs;
 	private JList listCatsCrs;
 	private JList listLevelsCat;
 	JButton btnCrearCurso;
+	
+	
+
 
 	// DAO implements
 	private ICrs crsDAO;
 	private ICat catDAO;
 	private ILvl lvlDAO;
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -76,6 +82,7 @@ public class WindowManageCourses extends JFrame {
 		catsModel = catDAO.getAllCategoriesByCrs(crs);
 
 	}
+	
 
 	public void loadLvlsByCat(int catIndex) {
 		CatModel cat = catsModel.get(catIndex);
@@ -265,9 +272,11 @@ public class WindowManageCourses extends JFrame {
 				createLevel(JOptionPane.showInputDialog("Escribe el nombre del nivel: "));
 			}
 		});
+		btnAddLevel.setEnabled(false);
 
 		JButton btnAddQuestion = new JButton("ANADIR PREGUNTA");
 		btnAddQuestion.setFont(new Font("Dialog", Font.PLAIN, 13));
+		btnAddQuestion.setEnabled(false);
 		btnAddQuestion.addActionListener(new ActionListener() {
 
 			@Override
@@ -275,7 +284,7 @@ public class WindowManageCourses extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							WindowAddExercise frame = new WindowAddExercise(catsModel.get(listCatsCrs.getSelectedIndex()), "prueba");
+							WindowAddExercise frame = new WindowAddExercise(selectedLvl);
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -314,10 +323,36 @@ public class WindowManageCourses extends JFrame {
 
 			
 
-
+		
 		listCatsCrs = new JList();
+		listCatsCrs.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent arg0) {
+                if (!arg0.getValueIsAdjusting()) {
+                	if (listCatsCrs.getSelectedIndex() != -1)
+                	{
+                		loadLvlsByCat(listCatsCrs.getSelectedIndex());
+                    	updateLevelListByModel();
+                    	btnAddLevel.setEnabled(true);
+                	}
+                	
+                }
+            }
+        });
 		listLevelsCat = new JList();
-
+		listLevelsCat.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent arg0) {
+                if (!arg0.getValueIsAdjusting()) {
+                	if (listLevelsCat.getSelectedIndex() != -1)
+                	{
+                		selectedLvl = lvlsModel.get(listLevelsCat.getSelectedIndex());
+                		btnAddQuestion.setEnabled(true);
+                	}
+                	
+                }
+            }
+        });
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup().addGap(25).addGroup(gl_contentPane
