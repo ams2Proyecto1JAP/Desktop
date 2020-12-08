@@ -58,10 +58,15 @@ public class ServerService implements InterfaceRMI{
 		return "Hello!";
 	}
 
-	/*Este es de prueba hasta tener los modelo bien en app -> no hacer caso el tipo de retorno
+	
 	@Override
-	public String getAllCrs() {
+	public ArrayList<String> getAllCrs() {
 		// TODO Auto-generated method stub
-		return crsDAO.getAllCrs();
-	}*/
+		ArrayList<CrsModel> crs = crsDAO.getAllCrs();
+		ArrayList<String> courses = new ArrayList<String>();
+		for(CrsModel c : crs) {
+			courses.add(c.getLangOrigin().getNombre()+" -> "+c.getLangDestiny().getNombre());
+		}
+		return courses;
+	}
 }
