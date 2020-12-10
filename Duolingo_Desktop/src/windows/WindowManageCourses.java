@@ -1,6 +1,7 @@
 package windows;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -30,7 +32,10 @@ import duolingo.lib.dao.implementations.*;
 import duolingo.lib.dao.interfaces.*;
 import duolingo.lib.hibernate.*;
 
-public class WindowManageCourses extends JFrame {
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+
+public class WindowManageCourses extends JPanel {
 
 	//Attributes
 	
@@ -237,14 +242,15 @@ public class WindowManageCourses extends JFrame {
 	}
 
 	public void setFrame() {
-		setDefaultCloseOperation(HIDE_ON_CLOSE);
+		/*setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("resources/duolingo.png"));
-		// setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 750, 520);
-		setResizable(false);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);*/
+		setBounds(0, 0, 3000, 3000);
+		//setSize(2000, 2000);
+		//setResizable(false);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		contentPane.setBounds(0,0,3000,3000);
+		contentPane.setBorder(new CompoundBorder());
 
 		JLabel lblTitleManageCourses = new JLabel("Cursos existentes (filtrar por origen y/o destino)");
 		lblTitleManageCourses.setFont(new Font("Dialog", Font.PLAIN, 13));
@@ -303,10 +309,6 @@ public class WindowManageCourses extends JFrame {
 			
 		});		
 		
-	
-		
-		
-		
 		JButton btnCheckQuestions = new JButton("VISUALIZAR PREGUNTAS");
 		btnCheckQuestions.setFont(new Font("Dialog", Font.PLAIN, 13));
 
@@ -364,72 +366,67 @@ public class WindowManageCourses extends JFrame {
             }
         });
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup().addGap(25).addGroup(gl_contentPane
-						.createParallelGroup(Alignment.LEADING).addComponent(lblTitleManageCourses, Alignment.TRAILING)
-						.addComponent(panelFilters, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1037, Short.MAX_VALUE)
-						.addGroup(Alignment.TRAILING,
-								gl_contentPane.createSequentialGroup()
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-												.addComponent(lblCursos).addComponent(listCrs,
-														GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_contentPane.createSequentialGroup()
-														.addPreferredGap(ComponentPlacement.RELATED)
-														.addComponent(lblCourseCat, GroupLayout.DEFAULT_SIZE,
-																GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addGap(54))
-												.addGroup(gl_contentPane.createSequentialGroup().addGap(75)
-														.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-																.addComponent(btnAddCat, GroupLayout.PREFERRED_SIZE,
-																		168, GroupLayout.PREFERRED_SIZE)
-																.addComponent(listCatsCrs, GroupLayout.PREFERRED_SIZE,
-																		147, GroupLayout.PREFERRED_SIZE))
-														.addGap(14)))
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-												.addComponent(lblLevelsCatCourse, GroupLayout.PREFERRED_SIZE, 229,
-														GroupLayout.PREFERRED_SIZE)
-												.addGroup(gl_contentPane.createSequentialGroup().addGap(45)
-														.addGroup(gl_contentPane
-																.createParallelGroup(Alignment.LEADING, false)
-																.addComponent(btnAddLevel, Alignment.TRAILING,
-																		GroupLayout.DEFAULT_SIZE,
-																		GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-																.addComponent(listLevelsCat, Alignment.TRAILING,
-																		GroupLayout.DEFAULT_SIZE, 147,
-																		Short.MAX_VALUE))))
-										.addGap(404))
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(btnCheckQuestions, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnAddQuestion, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 607,
-										Short.MAX_VALUE)))
-						.addContainerGap()));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane
-				.createSequentialGroup().addComponent(lblTitleManageCourses).addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(panelFilters, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-				.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(26)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(lblCursos, GroupLayout.PREFERRED_SIZE, 10,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblCourseCat, GroupLayout.PREFERRED_SIZE, 10,
-												GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(18).addComponent(lblLevelsCatCourse,
-								GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(listCrs, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
-						.addComponent(listCatsCrs, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
-						.addComponent(listLevelsCat, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE))
-				.addGap(27)
-				.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnAddLevel, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnAddCat, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-				.addGap(11).addComponent(btnAddQuestion, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(btnCheckQuestions, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-				.addContainerGap(51, Short.MAX_VALUE)));
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addGap(25)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addComponent(panelFilters, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(43)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblCursos)
+										.addComponent(listCrs, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE))
+									.addGap(185)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+											.addComponent(btnAddCat, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(listCatsCrs, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE))
+										.addComponent(lblCourseCat, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE))
+									.addGap(163)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblLevelsCatCourse, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE)
+										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+											.addComponent(listLevelsCat, GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+											.addComponent(btnAddLevel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+									.addGap(67))
+								.addComponent(lblTitleManageCourses, Alignment.LEADING)))
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addGap(68)
+							.addComponent(btnAddQuestion, GroupLayout.DEFAULT_SIZE, 1427, Short.MAX_VALUE))
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addGap(68)
+							.addComponent(btnCheckQuestions, GroupLayout.DEFAULT_SIZE, 1427, Short.MAX_VALUE)))
+					.addContainerGap())
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(lblTitleManageCourses)
+					.addGap(16)
+					.addComponent(panelFilters, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addGap(26)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblCourseCat, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblCursos, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblLevelsCatCourse, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(listLevelsCat, GroupLayout.PREFERRED_SIZE, 433, GroupLayout.PREFERRED_SIZE)
+						.addComponent(listCatsCrs, GroupLayout.PREFERRED_SIZE, 424, GroupLayout.PREFERRED_SIZE)
+						.addComponent(listCrs, GroupLayout.PREFERRED_SIZE, 424, GroupLayout.PREFERRED_SIZE))
+					.addGap(26)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnAddCat, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnAddLevel, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+					.addGap(41)
+					.addComponent(btnAddQuestion, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnCheckQuestions, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+					.addGap(45))
+		);
 
 		JLabel lblOriginLanguage = new JLabel("Idioma de origen");
 		lblOriginLanguage.setFont(new Font("Dialog", Font.PLAIN, 13));
@@ -464,61 +461,66 @@ public class WindowManageCourses extends JFrame {
 
 		btnCrearCurso.setFont(new Font("Dialog", Font.PLAIN, 13));
 		GroupLayout gl_panelFilters = new GroupLayout(panelFilters);
-		gl_panelFilters.setHorizontalGroup(gl_panelFilters.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panelFilters.createSequentialGroup().addContainerGap()
-						.addGroup(gl_panelFilters.createParallelGroup(Alignment.LEADING)
-								.addComponent(cmBxOriginLanguage, 0, 125, Short.MAX_VALUE).addComponent(
-										lblOriginLanguage, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
-						.addGap(45)
-						.addGroup(gl_panelFilters.createParallelGroup(Alignment.LEADING)
-								.addComponent(cmBxDestinyLanguage, GroupLayout.PREFERRED_SIZE, 137,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblDestinyaLanguage))
-						.addGap(72)
-						.addGroup(gl_panelFilters.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnCrearCurso, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)
-								.addComponent(btnAplicarFiltro, GroupLayout.PREFERRED_SIZE, 219,
-										GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(429, Short.MAX_VALUE)));
-		gl_panelFilters
-				.setVerticalGroup(gl_panelFilters.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panelFilters.createSequentialGroup().addContainerGap()
-								.addGroup(
-										gl_panelFilters.createParallelGroup(Alignment.TRAILING).addGroup(gl_panelFilters
-												.createSequentialGroup()
-												.addGroup(gl_panelFilters.createParallelGroup(Alignment.TRAILING)
-														.addGroup(gl_panelFilters
-																.createSequentialGroup()
-																.addComponent(lblDestinyaLanguage,
-																		GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-																.addGap(19))
-														.addGroup(gl_panelFilters.createSequentialGroup().addGap(4)
-																.addComponent(lblOriginLanguage,
-																		GroupLayout.DEFAULT_SIZE,
-																		GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-																.addPreferredGap(ComponentPlacement.RELATED)
-																.addGroup(gl_panelFilters
-																		.createParallelGroup(Alignment.BASELINE)
-																		.addComponent(cmBxOriginLanguage,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addComponent(cmBxDestinyLanguage,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE))))
-												.addGap(13))
-												.addGroup(gl_panelFilters.createSequentialGroup()
-														.addComponent(btnAplicarFiltro, GroupLayout.PREFERRED_SIZE, 20,
-																GroupLayout.PREFERRED_SIZE)
-														.addPreferredGap(ComponentPlacement.RELATED)
-														.addComponent(btnCrearCurso, GroupLayout.PREFERRED_SIZE, 18,
-																GroupLayout.PREFERRED_SIZE)
-														.addPreferredGap(ComponentPlacement.RELATED)))
-								.addGap(18)));
+		gl_panelFilters.setHorizontalGroup(
+			gl_panelFilters.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panelFilters.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panelFilters.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblOriginLanguage, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cmBxOriginLanguage, GroupLayout.PREFERRED_SIZE, 356, GroupLayout.PREFERRED_SIZE))
+					.addGap(76)
+					.addGroup(gl_panelFilters.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblDestinyaLanguage)
+						.addComponent(cmBxDestinyLanguage, GroupLayout.PREFERRED_SIZE, 357, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
+					.addGroup(gl_panelFilters.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnAplicarFiltro, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnCrearCurso, GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE))
+					.addGap(75))
+		);
+		gl_panelFilters.setVerticalGroup(
+			gl_panelFilters.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panelFilters.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panelFilters.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panelFilters.createSequentialGroup()
+							.addGroup(gl_panelFilters.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_panelFilters.createSequentialGroup()
+									.addComponent(btnAplicarFiltro, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+									.addGap(19))
+								.addGroup(gl_panelFilters.createSequentialGroup()
+									.addGap(4)
+									.addGroup(gl_panelFilters.createParallelGroup(Alignment.BASELINE)
+										.addComponent(lblOriginLanguage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(lblDestinyaLanguage, GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(gl_panelFilters.createParallelGroup(Alignment.BASELINE)
+										.addComponent(cmBxOriginLanguage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(cmBxDestinyLanguage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+							.addGap(13))
+						.addGroup(gl_panelFilters.createSequentialGroup()
+							.addComponent(btnCrearCurso, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+							.addGap(6)))
+					.addGap(18))
+		);
 		panelFilters.setLayout(gl_panelFilters);
 		contentPane.setLayout(gl_contentPane);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(contentPane, GroupLayout.PREFERRED_SIZE, 1505, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(83, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(21)
+					.addComponent(contentPane, GroupLayout.PREFERRED_SIZE, 801, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(23, Short.MAX_VALUE))
+		);
+		setLayout(groupLayout);
 		ready = true;
 	}
 

@@ -1,9 +1,12 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.AbstractAction;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
@@ -61,7 +64,8 @@ public class Interface extends JFrame {
 		// JMenu Add Items
 		JMenuItem menuItemAdminCurs = new JMenuItem(new AbstractAction("Administrar Cursos") {
 		    public void actionPerformed(ActionEvent e) {
-		    	openAdminCursos();
+		    	openAdminCursos(contentPane);
+		    	
 		    }
 		});
 		
@@ -74,12 +78,13 @@ public class Interface extends JFrame {
 		setContentPane(contentPane);
 	}
 	
-	public void openAdminCursos() {
+	public void openAdminCursos(JPanel contentPane) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					WindowManageCourses frame = new WindowManageCourses();
-					frame.setVisible(true);
+					WindowManageCourses windowManagerCourses = new WindowManageCourses();
+					contentPane.add(windowManagerCourses);
+					Interface.this.revalidate();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
