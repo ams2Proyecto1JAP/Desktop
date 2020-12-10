@@ -53,7 +53,7 @@ public class WindowAddExercise extends JFrame {
 	}
 	public void setLabels() {
 		lblLangSrc.setText("Idioma origen: " + lvl.getCat().getCrs().getLangOrigin().getNombre());
-		lblLangDst.setText("Idioma origen: " + lvl.getCat().getCrs().getLangDestiny().getNombre());
+		lblLangDst.setText("Idioma destino: " + lvl.getCat().getCrs().getLangDestiny().getNombre());
 		lblCat.setText("Categoría: " + lvl.getCat().getName());
 		lblLvl.setText("Nivel: " + lvl.getName());
 	}

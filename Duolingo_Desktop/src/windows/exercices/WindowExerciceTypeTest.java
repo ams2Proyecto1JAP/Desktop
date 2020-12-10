@@ -72,6 +72,11 @@ public class WindowExerciceTypeTest {
 			
 			exsDAO.saveExs(exs);
 		}
+		txtToTranslate.setText("");
+		txtBadTranslated2.setText("");
+		txtBadTranslated1.setText("");
+		txtTranslated.setText("");
+		
 	}
 	public String generateJSON(String toTranslate, String translated, String badTranslated1, String badTranslated2) {
 		JSONObject file = new JSONObject();
