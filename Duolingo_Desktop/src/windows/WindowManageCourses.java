@@ -95,10 +95,9 @@ public class WindowManageCourses extends JPanel {
 
 	public void loadLvlsByCat(int catIndex) {
 		CatModel cat = catsModel.get(catIndex);
-
 		lvlsModel = lvlDAO.getAllLevelsByCat(cat);
-
 	}
+	
 
 	public void updateCatListByModel() {
 		listCatsCrs.removeAll();
@@ -311,6 +310,25 @@ public class WindowManageCourses extends JPanel {
 		
 		JButton btnCheckQuestions = new JButton("VISUALIZAR PREGUNTAS");
 		btnCheckQuestions.setFont(new Font("Dialog", Font.PLAIN, 13));
+		btnCheckQuestions.setEnabled(false);
+		btnCheckQuestions.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							WindowCheckExercices frame = new WindowCheckExercices(selectedLvl);
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				
+			}
+			
+		});		
 
 		listCrs = new JList();	
 		listCrs.addListSelectionListener(new ListSelectionListener() {
@@ -360,6 +378,7 @@ public class WindowManageCourses extends JPanel {
                 	{
                 		selectedLvl = lvlsModel.get(listLevelsCat.getSelectedIndex());
                 		btnAddQuestion.setEnabled(true);
+                		btnCheckQuestions.setEnabled(true);
                 	}
                 	
                 }
