@@ -94,18 +94,18 @@ public class WindowExerciceFormOpenTrad {
 	}
 	public String generateJSON(String toTranslate, ArrayList<JTextField> texts) {
 		JSONObject file = new JSONObject();
-		JSONObject typeTest = new JSONObject();
+		JSONObject openTrad = new JSONObject();
 		
-		typeTest.put("phrToTranslate", toTranslate);
+		openTrad.put("phrToTranslate", toTranslate);
 		
 		JSONArray options = new JSONArray();
 		for (JTextField jt : texts)
 		{
 			options.put(jt.getText());
 		}
-		typeTest.put("options", options);
+		openTrad.put("options", options);
 		
-		file.put("testExercise", typeTest);
+		file.put("openTradExercise", openTrad);
 		return file.toString();
 	}
 	/**
