@@ -84,7 +84,8 @@ public class WindowCheckExercices extends JFrame {
 	}
 	
 	public ArrayList<ExsModel> loadExsByLvl(LvlModel lvl) {
-		return lvlDAO.getAllExercicesByLvl(lvl);
+		return null;
+		//return lvlDAO.getAllExercicesByLvl(lvl);
 	}
 	
 	public ArrayList<ExerciceTest> getExerciceContent(ArrayList<ExsModel> exercices) {
