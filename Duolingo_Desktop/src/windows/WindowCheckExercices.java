@@ -14,11 +14,14 @@ import dao.Exercice;
 import dao.ExerciceTest;
 import dao.ExerciceTestI;
 import dao.ExerciceTestImpl;
+import duolingo.lib.dao.implementations.ExsImpl;
 import duolingo.lib.dao.implementations.LvlImpl;
+import duolingo.lib.dao.interfaces.IExs;
 import duolingo.lib.dao.interfaces.ILvl;
 import duolingo.lib.model.CatModel;
 import duolingo.lib.model.ExsModel;
 import duolingo.lib.model.LvlModel;
+import windows.exercices.WindowCheckExerciceTypeTest;
 
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
@@ -27,8 +30,10 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class WindowCheckExercices extends JFrame {
+public class WindowCheckExercices extends JFrame  implements ActionListener {
 
 	private JPanel contentPane;
 	private JScrollPane scrollPane;
@@ -39,7 +44,7 @@ public class WindowCheckExercices extends JFrame {
 	private ArrayList<ExsModel> exercices;
 	private ArrayList<ExerciceTest> exercicesContent;
 	
-	private ILvl lvlDAO;
+	private IExs exDAO;
 	private ExerciceTestI ExerciceTestDAO;
 	
 
@@ -64,7 +69,7 @@ public class WindowCheckExercices extends JFrame {
 		cons.weightx = 1;
 		cons.gridx = 0;
 		
-		lvlDAO = new LvlImpl();
+		exDAO = new ExsImpl();
 		ExerciceTestDAO = new ExerciceTestImpl();
 		
 		exercices = loadExsByLvl(lvl);
@@ -84,7 +89,7 @@ public class WindowCheckExercices extends JFrame {
 	}
 	
 	public ArrayList<ExsModel> loadExsByLvl(LvlModel lvl) {
-		return lvlDAO.getAllExercicesByLvl(lvl);
+		return exDAO.getAllExercicesByLvl(lvl);
 	}
 	
 	public ArrayList<ExerciceTest> getExerciceContent(ArrayList<ExsModel> exercices) {
@@ -102,9 +107,19 @@ public class WindowCheckExercices extends JFrame {
 			exType = exercicesContent.get(i).getType();
 			question = exercicesContent.get(i).getToTrans();
 			
-			JButton btn = new JButton(exType+" - "+question); 
+			JButton btn = new JButton(exType+" - "+question);
+			btn.addActionListener(this);
 			exercicesButtons.add(btn);
 			panelButton.add(btn, cons);
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		JButton btnSelected = (JButton) e.getSource();
+		int index = exercicesButtons.lastIndexOf(btnSelected);
+		
+		WindowCheckExerciceTypeTest windowCheckExerciceTest = new WindowCheckExerciceTypeTest(exercicesContent.get(index));
 	}
 }

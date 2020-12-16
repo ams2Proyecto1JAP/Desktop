@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.ArrayList;
+
 public class ExerciceTest extends Exercice {
 	private String toTrans;
     private String trans;
@@ -44,5 +46,13 @@ public class ExerciceTest extends Exercice {
 
     public void setInc2(String inc2) {
         this.inc2 = inc2;
+    }
+    
+    public ArrayList<String> getAllOptions() {
+    	ArrayList<String> options = new ArrayList<String>();
+    	options.add(trans);
+    	options.add(inc1);
+    	options.add(inc2);
+    	return options;
     }
 }
