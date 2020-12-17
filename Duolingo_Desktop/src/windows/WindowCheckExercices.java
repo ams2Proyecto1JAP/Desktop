@@ -14,6 +14,9 @@ import dao.Exercice;
 import dao.ExerciceTest;
 import dao.ExerciceTestI;
 import dao.ExerciceTestImpl;
+import dao.ExerciceTranslate;
+import dao.ExerciceTranslateImpl;
+import dao.IExerciceTranslate;
 import duolingo.lib.dao.implementations.ExsImpl;
 import duolingo.lib.dao.implementations.LvlImpl;
 import duolingo.lib.dao.interfaces.IExs;
@@ -43,9 +46,11 @@ public class WindowCheckExercices extends JFrame  implements ActionListener {
 	private ArrayList<JButton> exercicesButtons;
 	private ArrayList<ExsModel> exercices;
 	private ArrayList<ExerciceTest> exercicesContent;
+	private ArrayList<ExerciceTranslate> exsTranslateContent;
 	
 	private IExs exDAO;
 	private ExerciceTestI ExerciceTestDAO;
+	private IExerciceTranslate exerciceTranslateDAO;
 	
 
 	/**
@@ -71,10 +76,12 @@ public class WindowCheckExercices extends JFrame  implements ActionListener {
 		
 		exDAO = new ExsImpl();
 		ExerciceTestDAO = new ExerciceTestImpl();
+		exerciceTranslateDAO = new ExerciceTranslateImpl();
 		
 		exercices = loadExsByLvl(lvl);
-		exercicesContent = getExerciceContent(exercices);
-		createButtons(exercicesContent);
+		exercicesContent = getExerciceTestContent(exercices);
+		exsTranslateContent = getExerciceTranslateContent(exercices);
+		createButtons(exercicesContent, exsTranslateContent);
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -94,15 +101,35 @@ public class WindowCheckExercices extends JFrame  implements ActionListener {
 
 	}
 	
-	public ArrayList<ExerciceTest> getExerciceContent(ArrayList<ExsModel> exercices) {
+	public ArrayList<ExerciceTest> getExerciceTestContent(ArrayList<ExsModel> exercices) {
 		ArrayList<ExerciceTest> exercicesContent = new ArrayList<ExerciceTest>();
 		for(ExsModel e : exercices) {
-			exercicesContent.add(ExerciceTestDAO.getExerciceTextByContent(e.getContent()));
+			try {
+				exercicesContent.add(ExerciceTestDAO.getExerciceTextByContent(e.getContent()));
+			} catch (Exception exc)
+			{
+				
+			}
+			
 		}
 		return exercicesContent;
 	}
 	
-	public void createButtons(ArrayList<ExerciceTest> exercicesContent) {
+	public ArrayList<ExerciceTranslate> getExerciceTranslateContent(ArrayList<ExsModel> exercices) {
+		ArrayList<ExerciceTranslate> exercicesContent = new ArrayList<ExerciceTranslate>();
+		for(ExsModel e : exercices) {
+			try {
+				exercicesContent.add(exerciceTranslateDAO.getExerciceTranslateByContent(e.getContent()));
+			} catch (Exception exc)
+			{
+				
+			}
+			
+		}
+		return exercicesContent;
+	}
+	
+	public void createButtons(ArrayList<ExerciceTest> exercicesContent, ArrayList<ExerciceTranslate> exsTranslateContent) {
 		String exType = new String();
 		String question = new String();
 		for(int i = 0; i < exercicesContent.size(); i++) {
@@ -111,6 +138,14 @@ public class WindowCheckExercices extends JFrame  implements ActionListener {
 			
 			JButton btn = new JButton(exType+" - "+question);
 			btn.addActionListener(this);
+			exercicesButtons.add(btn);
+			panelButton.add(btn, cons);
+		}
+		for(int i = 0; i < exsTranslateContent.size(); i++) {
+			exType = exsTranslateContent.get(i).getType();
+			question = exsTranslateContent.get(i).getToTrans();
+			
+			JButton btn = new JButton(exType+" - "+question);
 			exercicesButtons.add(btn);
 			panelButton.add(btn, cons);
 		}
@@ -123,5 +158,21 @@ public class WindowCheckExercices extends JFrame  implements ActionListener {
 		int index = exercicesButtons.lastIndexOf(btnSelected);
 		
 		WindowCheckExerciceTypeTest windowCheckExerciceTest = new WindowCheckExerciceTypeTest(exercicesContent.get(index));
+	}
+
+	public ArrayList<ExerciceTranslate> getExsTranslateContent() {
+		return exsTranslateContent;
+	}
+
+	public void setExsTranslateContent(ArrayList<ExerciceTranslate> exsTranslateContent) {
+		this.exsTranslateContent = exsTranslateContent;
+	}
+
+	public IExerciceTranslate getExerciceTranslateDAO() {
+		return exerciceTranslateDAO;
+	}
+
+	public void setExerciceTranslateDAO(IExerciceTranslate exerciceTranslateDAO) {
+		this.exerciceTranslateDAO = exerciceTranslateDAO;
 	}
 }
