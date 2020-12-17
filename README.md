@@ -23,7 +23,7 @@ Abrir el archivo y hacer la siguientes modificaciones:
 
 - linea 27, password: sustituir "password" en settings.put(Environment.PASS, "password"); con tu password de la base datos.
 
-LANZAR LA APPLLICAION: 
+LANZAR LA APPLICACION: 
 
 En el explorador de archivos de eclipse ir a Duolingo_Desktop -> src -> main -> Interface.java.
 Abrir el archvio y ejecutar el programa (Run Interface). La aplicaion esta lista para usarse. 
