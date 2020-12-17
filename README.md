@@ -3,8 +3,9 @@ Instructivo de uso para la applicacion Desktop:
 
 DESCARGAR EL CODIGO FUENTE DE LA APPLICACION: 
 
-Para esto es necesario tener instalado el entorne de desarollo Eclipse. Una vez instalado ir a 
-File -> Import -> Git -> Projects from Git -> Clone Uri -> 
+Para esto es necesario tener instalado el entorno de desarollo Eclipse. Una vez instalado ir a 
+File -> Import -> Git -> Projects from Git -> Clone Uri -> https://github.com/ams2Proyecto1JAP/Desktop -> Next ->
+seleccionar solo "pre" -> Next -> seleccionar CloneSubmodule -> Finish.
 
 CREAR LA BASE DATOS: 
 
