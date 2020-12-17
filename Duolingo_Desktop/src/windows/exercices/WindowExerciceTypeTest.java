@@ -44,6 +44,7 @@ public class WindowExerciceTypeTest {
 	public WindowExerciceTypeTest(LvlModel lvl) {
 		this.setLvl(lvl);
 		initialize();
+		
 	}
 
 	
@@ -58,8 +59,8 @@ public class WindowExerciceTypeTest {
 		}
 		else
 		{
-			String json = generateJSON(txtToTranslate.getText(), txtBadTranslated2 .getText(),
-					txtBadTranslated1.getText(),txtTranslated.getText());
+			String json = generateJSON(txtToTranslate.getText(),txtTranslated.getText(), txtBadTranslated1.getText(),
+					txtBadTranslated2.getText());
 			IExsType exsTypeDAO = new ExsTypeImpl();
 			IExs exsDAO = new ExsImpl();
 			
@@ -72,20 +73,19 @@ public class WindowExerciceTypeTest {
 			
 			exsDAO.saveExs(exs);
 		}
-		txtToTranslate.setText("");
-		txtBadTranslated2.setText("");
-		txtBadTranslated1.setText("");
 		txtTranslated.setText("");
-		
+		txtBadTranslated1.setText("");
+		txtBadTranslated2.setText("");
+		txtToTranslate.setText("");
 	}
 	public String generateJSON(String toTranslate, String translated, String badTranslated1, String badTranslated2) {
 		JSONObject file = new JSONObject();
 		JSONObject typeTest = new JSONObject();
 		
-		typeTest.put("phrToTranslate", toTranslate);
 		typeTest.put("phrTranslated", translated);
 		typeTest.put("phrBadTranslated1", badTranslated1);
 		typeTest.put("phrBadTranslated2", badTranslated2);
+		typeTest.put("phrToTranslate", toTranslate);
 		
 		file.put("testExercise", typeTest);
 		return file.toString();
@@ -210,8 +210,8 @@ public class WindowExerciceTypeTest {
 		btnFinish.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				finishButtonClick();
+				frame.dispose();
 			}
 			
 		});
