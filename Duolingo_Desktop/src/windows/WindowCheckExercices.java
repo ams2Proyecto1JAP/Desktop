@@ -89,7 +89,9 @@ public class WindowCheckExercices extends JFrame  implements ActionListener {
 	}
 	
 	public ArrayList<ExsModel> loadExsByLvl(LvlModel lvl) {
+
 		return exDAO.getAllExercicesByLvl(lvl);
+
 	}
 	
 	public ArrayList<ExerciceTest> getExerciceContent(ArrayList<ExsModel> exercices) {

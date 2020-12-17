@@ -7,7 +7,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/alecp/Downloads/lipermi-0.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alecp/OneDrive/Escritorio/json-20200518.jar"/>
+	<classpathentry kind="lib" path="E:/AMS2/M06 - ACCESO A DATOS/lipermi-0.4.jar"/>
+	<classpathentry kind="lib" path="E:/AMS2/M06 - ACCESO A DATOS/json-20200518.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

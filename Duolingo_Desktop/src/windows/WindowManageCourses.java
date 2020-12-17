@@ -404,16 +404,20 @@ public class WindowManageCourses extends JPanel {
 		gl_contentPane.setHorizontalGroup(
 				gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_contentPane.createSequentialGroup()
+
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+
 										.addGap(25)
 										.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 												.addComponent(panelFilters, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 												.addGroup(gl_contentPane.createSequentialGroup()
 														.addGap(43)
 														.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-																.addComponent(listCrs, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
-																.addComponent(lblCursos))
+
+																.addComponent(lblCursos)
+																.addComponent(listCrs, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE))
+
 														.addGap(185)
 														.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 																.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
@@ -422,16 +426,18 @@ public class WindowManageCourses extends JPanel {
 																.addComponent(lblCourseCat, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE))
 														.addGap(163)
 														.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+
+																.addComponent(lblLevelsCatCourse, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE)
 																.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 																		.addComponent(listLevelsCat, GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
-																		.addComponent(btnAddLevel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-																.addComponent(lblLevelsCatCourse, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE))
+																		.addComponent(btnAddLevel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 														.addGap(67))
 												.addComponent(lblTitleManageCourses, Alignment.LEADING)))
-								.addGroup(gl_contentPane.createSequentialGroup()
+								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 										.addGap(68)
 										.addComponent(btnAddQuestion, GroupLayout.DEFAULT_SIZE, 1427, Short.MAX_VALUE))
-								.addGroup(gl_contentPane.createSequentialGroup()
+								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+
 										.addGap(68)
 										.addComponent(btnCheckQuestions, GroupLayout.DEFAULT_SIZE, 1427, Short.MAX_VALUE)))
 						.addContainerGap())
@@ -442,10 +448,12 @@ public class WindowManageCourses extends JPanel {
 						.addComponent(lblTitleManageCourses)
 						.addGap(16)
 						.addComponent(panelFilters, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addGap(18)
+
+						.addGap(26)
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblCursos, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblCourseCat, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblCursos, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
+
 								.addComponent(lblLevelsCatCourse, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE))
 						.addGap(18)
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)

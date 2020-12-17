@@ -16,6 +16,7 @@ import javax.swing.border.LineBorder;
 
 import duolingo.lib.model.CatModel;
 import duolingo.lib.model.LvlModel;
+import windows.exercices.WindowExerciceFormOpenTrad;
 import windows.exercices.WindowExerciceTypeTest;
 
 import java.awt.Color;
@@ -54,7 +55,7 @@ public class WindowAddExercise extends JFrame {
 	public void setLabels() {
 		lblLangSrc.setText("Idioma origen: " + lvl.getCat().getCrs().getLangOrigin().getNombre());
 		lblLangDst.setText("Idioma destino: " + lvl.getCat().getCrs().getLangDestiny().getNombre());
-		lblCat.setText("Categoría: " + lvl.getCat().getName());
+		lblCat.setText("Categorï¿½a: " + lvl.getCat().getName());
 		lblLvl.setText("Nivel: " + lvl.getName());
 	}
 	
@@ -107,6 +108,16 @@ public class WindowAddExercise extends JFrame {
 		btnTradOpen.setIcon(new ImageIcon("resources/traduccio_oberta.jpeg"));
 		btnTradOpen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							WindowExerciceFormOpenTrad window = new WindowExerciceFormOpenTrad(lvl);
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
 			}
 		});
 		
