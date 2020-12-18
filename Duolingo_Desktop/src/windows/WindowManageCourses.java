@@ -212,6 +212,7 @@ public class WindowManageCourses extends JFrame {
 		lblLevelsCatCourse.setFont(new Font("Dialog", Font.PLAIN, 13));
 
 		JButton btnAddCat = new JButton("Anadir categoria");
+		btnAddCat.setEnabled(false);
 		btnAddCat.setFont(new Font("Dialog", Font.PLAIN, 13));
 		btnAddCat.addActionListener(new ActionListener() {			
 			@Override
@@ -239,6 +240,7 @@ public class WindowManageCourses extends JFrame {
                 	{
                 		loadCategoriesByCrs(listCrs.getSelectedIndex());
                     	updateCatListByModel();
+                    	btnAddCat.setEnabled(true);
                 	}
                 	
                 }
@@ -331,6 +333,7 @@ public class WindowManageCourses extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				applyfilter(cmBxOriginLanguage, cmBxDestinyLanguage);
+				btnAddCat.setEnabled(false);
 			}
 			
 		});
