@@ -359,6 +359,7 @@ public class WindowManageCourses extends JPanel {
 						btnAddLevel.setEnabled(false);
 						btnAddQuestion.setEnabled(false);
 						btnAddCat.setEnabled(true);
+						btnCheckQuestions.setEnabled(false);
 					}
 
 				}
@@ -380,6 +381,7 @@ public class WindowManageCourses extends JPanel {
 						updateLevelListByModel();            
 						btnAddQuestion.setEnabled(false);
 						btnAddLevel.setEnabled(true);
+						btnCheckQuestions.setEnabled(false);
 					}
 
 				}

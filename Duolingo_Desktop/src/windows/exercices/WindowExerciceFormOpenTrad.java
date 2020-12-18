@@ -170,7 +170,7 @@ public class WindowExerciceFormOpenTrad {
 		fieldsPanel.add(lblBadTranslated2);
 		lblBadTranslated2.setFont(new Font("Dialog", Font.PLAIN, 18));
 		
-		JButton btnNewButton = new JButton("Añadir");
+		JButton btnNewButton = new JButton("Anadir");
 		fieldsPanel.add(btnNewButton);
 		
 		textField = new JTextField();

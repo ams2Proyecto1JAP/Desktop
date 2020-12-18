@@ -62,6 +62,7 @@ public class Interface extends JFrame {
 	 */
 	public Interface() {
 		checkIntsertLanguages();
+		checkInsertExsType();
 		//Start server
 		ServerService serverService = new ServerService();
 		// Set iccon image of app
