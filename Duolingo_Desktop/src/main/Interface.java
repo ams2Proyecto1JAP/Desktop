@@ -14,9 +14,13 @@ import javax.swing.event.MenuListener;
 
 import com.ieti.duolingoproyect.connection.ServerService;
 
+import duolingo.lib.dao.implementations.ExsTypeImpl;
 import duolingo.lib.dao.implementations.LangImpl;
+import duolingo.lib.dao.interfaces.IExsType;
 import duolingo.lib.dao.interfaces.ILang;
+import duolingo.lib.model.ExsTypeModel;
 import duolingo.lib.model.LangModel;
+import utils.Constants;
 import windows.WindowManageCourses;
 
 import javax.swing.JMenuBar;
@@ -103,6 +107,21 @@ public class Interface extends JFrame {
 			}
 		});
 	}
+	
+	private void checkInsertExsType() {
+		IExsType exsTypeDAO = new ExsTypeImpl();
+		if (exsTypeDAO.getExsTypeByType(Constants.EXS_TYPE_OPEN_TRAD) == null)
+		{
+			exsTypeDAO.saveExsType(new ExsTypeModel(Constants.EXS_TYPE_OPEN_TRAD));
+		}
+		
+		if (exsTypeDAO.getExsTypeByType(Constants.EXS_TYPE_TEST) == null)
+		{
+			exsTypeDAO.saveExsType(new ExsTypeModel(Constants.EXS_TYPE_TEST));
+		}
+		
+	}
+	
 	
 	public void checkIntsertLanguages() {
 
