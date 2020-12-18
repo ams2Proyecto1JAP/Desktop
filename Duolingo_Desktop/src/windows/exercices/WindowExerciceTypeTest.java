@@ -58,8 +58,8 @@ public class WindowExerciceTypeTest {
 		}
 		else
 		{
-			String json = generateJSON(txtToTranslate.getText(), txtBadTranslated2 .getText(),
-					txtBadTranslated1.getText(),txtTranslated.getText());
+			String json = generateJSON(txtToTranslate.getText(), txtTranslated.getText(),
+					txtBadTranslated1.getText(), txtBadTranslated2.getText());
 			IExsType exsTypeDAO = new ExsTypeImpl();
 			IExs exsDAO = new ExsImpl();
 			
@@ -71,11 +71,12 @@ public class WindowExerciceTypeTest {
 			ExsModel exs = new ExsModel(lvl, index, exsType, json);
 			
 			exsDAO.saveExs(exs);
+			txtToTranslate.setText("");
+			txtBadTranslated2.setText("");
+			txtBadTranslated1.setText("");
+			txtTranslated.setText("");
 		}
-		txtToTranslate.setText("");
-		txtBadTranslated2.setText("");
-		txtBadTranslated1.setText("");
-		txtTranslated.setText("");
+		
 		
 	}
 	public String generateJSON(String toTranslate, String translated, String badTranslated1, String badTranslated2) {
